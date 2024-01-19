@@ -14,12 +14,14 @@ public class NameNormalizer {
 
       var lastName = nameParts[nameParts.length - 1];
       var firstName = nameParts[0];
-      var middleNames = Arrays.copyOfRange(nameParts, 1, nameParts.length - 1);
+      var middleNames =
+         Arrays.copyOfRange(nameParts, 1, nameParts.length - 1);
 
       return formatLastNameFirst(lastName, firstName, middleNames);
    }
 
-   private static String formatLastNameFirst(String lastName, String firstName, String[] middleNames) {
+   private static String formatLastNameFirst(
+      String lastName, String firstName, String[] middleNames) {
       var middleInitials = Arrays.stream(middleNames)
          .map(NameNormalizer::extractInitial)
          .collect(Collectors.joining(" "));
