@@ -14,17 +14,21 @@ public class NameNormalizerTest {
 
    @Test
    public void firstNameLastName() {
-      assertEquals("Cohen, Leonard", normalizer.normalizeName("Leonard Cohen"));
+      assertEquals("Cohen, Leonard",
+         normalizer.normalizeName("Leonard Cohen"));
    }
 
    @Test
    public void multipleMiddleNames() {
-      assertEquals("Jackson, Samuel L.", normalizer.normalizeName("Samuel Leroy Jackson"));
-      assertEquals("Martin, George R. R.", normalizer.normalizeName("George Raymond Richard Martin"));
+      assertEquals("Jackson, Samuel L.",
+         normalizer.normalizeName("Samuel Leroy Jackson"));
+      assertEquals("Martin, George R. R.",
+         normalizer.normalizeName("George Raymond Richard Martin"));
    }
 
    @Test
    public void longName() {
-      assertEquals("Hackley, Emma A. S.", normalizer.normalizeName("Emma Azalia Smith Hackley"));
+      assertEquals("Hackley, Emma A. S.",
+         normalizer.normalizeName("Emma Azalia Smith Hackley"));
    }
 }
