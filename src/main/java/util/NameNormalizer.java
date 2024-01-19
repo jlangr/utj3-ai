@@ -1,27 +1,24 @@
 package util;
 
-// START:generated
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class NameNormalizer {
 
-   public static String normalizeName(String name) {
+   public String normalizeName(String name) {
       var nameParts = name.split(" ");
       if (nameParts.length == 1) {
          return name;
       }
 
-      var lastName = nameParts[nameParts.length - 1];
-      var firstName = nameParts[0];
-      var middleNames = Arrays.copyOfRange(nameParts, 1, nameParts.length - 1);
-
-      return formatLastNameFirst(lastName, firstName, middleNames);
+      return formatLastNameFirst(nameParts[0],
+         nameParts[nameParts.length - 1],
+         Arrays.copyOfRange(nameParts, 1, nameParts.length - 1));
    }
 
-   private static String formatLastNameFirst(String lastName, String firstName, String[] middleNames) {
+   private String formatLastNameFirst(String firstName, String lastName, String[] middleNames) {
       var middleInitials = Arrays.stream(middleNames)
-         .map(NameNormalizer::extractInitial)
+         .map(this::extractInitial)
          .collect(Collectors.joining(" "));
 
       return middleInitials.isEmpty() ?
@@ -29,8 +26,7 @@ public class NameNormalizer {
          String.format("%s, %s %s", lastName, firstName, middleInitials);
    }
 
-   private static String extractInitial(String name) {
+   private String extractInitial(String name) {
       return name.charAt(0) + ".";
    }
 }
-// END:generated
