@@ -8,23 +8,28 @@ public class NameNormalizerTest {
 
    @Test
    public void testSingleName() {
-      assertEquals("Plato", NameNormalizer.normalizeName("Plato"));
+      assertEquals("Plato",
+         NameNormalizer.normalizeName("Plato"));
    }
 
    @Test
    public void testFirstNameLastName() {
-      assertEquals("Cohen, Leonard", NameNormalizer.normalizeName("Leonard Cohen"));
+      assertEquals("Cohen, Leonard",
+         NameNormalizer.normalizeName("Leonard Cohen"));
    }
 
    @Test
    public void testMultipleMiddleNames() {
-      assertEquals("Jackson, Samuel L.", NameNormalizer.normalizeName("Samuel Leroy Jackson"));
-      assertEquals("Martin, George R. R.", NameNormalizer.normalizeName("George Raymond Richard Martin"));
+      assertEquals("Jackson, Samuel L.",
+         NameNormalizer.normalizeName("Samuel Leroy Jackson"));
+      assertEquals("Martin, George R. R.",
+         NameNormalizer.normalizeName("George Raymond Richard Martin"));
    }
 
    @Test
    public void testLongName() {
-      assertEquals("Hackley, Emma A. S.", NameNormalizer.normalizeName("Emma Azalia Smith Hackley"));
+      assertEquals("Hackley, Emma A. S.",
+         NameNormalizer.normalizeName("Emma Azalia Smith Hackley"));
    }
 }
 // END:generated
