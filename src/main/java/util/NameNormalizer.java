@@ -26,10 +26,12 @@ public class NameNormalizer {
    }
 
    private String[] middleNames(String[] nameParts) {
-      return Arrays.copyOfRange(nameParts, 1, nameParts.length - 1);
+      return Arrays.copyOfRange(
+         nameParts, 1, nameParts.length - 1);
    }
 
-   private String formatLastNameFirst(String firstName, String lastName, String[] middleNames) {
+   private String formatLastNameFirst(
+      String firstName, String lastName, String[] middleNames) {
       var middleInitials = Arrays.stream(middleNames)
          .map(this::extractInitial)
          .collect(Collectors.joining(" "));
