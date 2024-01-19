@@ -11,9 +11,22 @@ public class NameNormalizer {
          return name;
       }
 
-      return formatLastNameFirst(nameParts[0],
-         nameParts[nameParts.length - 1],
-         Arrays.copyOfRange(nameParts, 1, nameParts.length - 1));
+      return formatLastNameFirst(
+         firstName(nameParts),
+         lastName(nameParts),
+         middleNames(nameParts));
+   }
+
+   private String firstName(String[] nameParts) {
+      return nameParts[0];
+   }
+
+   private String lastName(String[] nameParts) {
+      return nameParts[nameParts.length - 1];
+   }
+
+   private String[] middleNames(String[] nameParts) {
+      return Arrays.copyOfRange(nameParts, 1, nameParts.length - 1);
    }
 
    private String formatLastNameFirst(String firstName, String lastName, String[] middleNames) {
