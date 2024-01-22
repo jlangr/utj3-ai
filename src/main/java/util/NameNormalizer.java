@@ -3,16 +3,19 @@ package util;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-// START:code
 public class NameNormalizer {
 
    private String[] nameParts;
    private String suffix = "";
 
+   // START:fix
    public String normalizeName(String name) {
       extractSuffix(name);
-      if (nameParts.length == 1 && suffix.isEmpty()) {
-         return name;
+      // Handle case for single name with no middle names but potentially a suffix
+      if (nameParts.length == 1) {
+         // START_HIGHLIGHT
+         return nameParts[0] + suffix;
+         // END_HIGHLIGHT
       }
 
       return formatLastNameFirst() + suffix;
@@ -27,8 +30,7 @@ public class NameNormalizer {
          this.nameParts = name.split(" ");
       }
    }
-   // ...
-// END:code
+   // END:fix
 
    private String formatLastNameFirst() {
       var firstName = firstName();
@@ -65,6 +67,4 @@ public class NameNormalizer {
    private String initial(String name) {
       return name.charAt(0) + ".";
    }
-// START:code
 }
-// END:code
