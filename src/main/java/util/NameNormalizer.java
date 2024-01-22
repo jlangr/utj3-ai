@@ -8,11 +8,14 @@ public class NameNormalizer {
    private String[] nameParts;
    private String suffix = "";
 
-   // START:ok
+   // Define a record to hold extracted name parts and suffix
+   // START:better
+   private record ExtractedNameParts(String[] nameParts, String suffix) {}
+
    public String normalizeName(String name) {
-      var result = extractSuffix(name);
-      this.nameParts = result[0].split(" ");
-      this.suffix = result[1];
+      var extractedNameParts = extractSuffix(name);
+      this.nameParts = extractedNameParts.nameParts();
+      this.suffix = extractedNameParts.suffix();
 
       if (nameParts.length == 1) {
          return nameParts[0] + suffix;
@@ -21,15 +24,15 @@ public class NameNormalizer {
       return formatLastNameFirst() + suffix;
    }
 
-   private String[] extractSuffix(String name) {
+   private ExtractedNameParts extractSuffix(String name) {
       if (name.contains(",")) {
          var parts = name.split(", ", 2);
-         return new String[] {parts[0], ", " + parts[1]};
+         return new ExtractedNameParts(parts[0].split(" "), ", " + parts[1]);
       } else {
-         return new String[] {name, ""};
+         return new ExtractedNameParts(name.split(" "), "");
       }
    }
-   // END:ok
+   // END:better
 
    private String formatLastNameFirst() {
       return lastName() + ", " + firstName() + middleInitialsString();
