@@ -65,4 +65,6 @@ public class NameNormalizer {
    private String initial(String name) {
       return name.charAt(0) + ".";
    }
+// START:code
 }
+// END:code
