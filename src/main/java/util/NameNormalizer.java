@@ -3,21 +3,33 @@ package util;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+// START:suffix
 public class NameNormalizer {
 
    private String[] nameParts;
+   // START_HIGHLIGHT
+   private String suffix = "";
+   // END_HIGHLIGHT
 
-   // START:fixedCode
    public String normalizeName(String name) {
-      this.nameParts = name.split(" ");
+      // START_HIGHLIGHT
+      if (name.contains(",")) {
+         var parts = name.split(", ");
+         this.nameParts = parts[0].split(" ");
+         this.suffix = ", " + parts[1];
+      } else {
+         this.nameParts = name.split(" ");
+      }
+
       if (nameParts.length == 1) {
          return name;
       }
 
-      return formatLastNameFirst();
+      return formatLastNameFirst() + suffix;
+      // END_HIGHLIGHT
    }
    // ...
-   // END:fixedCode
+// END:suffix
 
    private String firstName() {
       return nameParts[0];
@@ -31,24 +43,18 @@ public class NameNormalizer {
       return Arrays.copyOfRange(nameParts, 1, nameParts.length - 1);
    }
 
-   // START:fixedCode
-   // START_HIGHLIGHT
    private String formatLastNameFirst() {
-      // END_HIGHLIGHT
       var middleInitials = Arrays.stream(middleNames())
          .map(this::initial)
          .collect(Collectors.joining(" "));
       return middleInitials.isEmpty() ?
-         // START_HIGHLIGHT
          String.format("%s, %s", lastName(), firstName()) :
          String.format("%s, %s %s", lastName(), firstName(), middleInitials);
-         // END_HIGHLIGHT
    }
 
-   // START_HIGHLIGHT
    private String initial(String name) {
-      // END_HIGHLIGHT
       return name.charAt(0) + ".";
    }
-   // END:fixedCode
+   // START:suffix
 }
+// END:suffix

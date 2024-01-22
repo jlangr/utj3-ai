@@ -17,7 +17,6 @@ public class NameNormalizerTest {
       assertEquals("Cohen, Leonard", normalizer.normalizeName("Leonard Cohen"));
    }
 
-   // START:fixedTests
    @Test
    public void initializesMiddleName() {
       assertEquals("Jackson, Samuel L.", normalizer.normalizeName("Samuel Leroy Jackson"));
@@ -28,5 +27,11 @@ public class NameNormalizerTest {
       assertEquals("Martin, George R. R.", normalizer.normalizeName("George Raymond Richard Martin"));
       assertEquals("Hackley, Emma A. S.", normalizer.normalizeName("Emma Azalia Smith Hackley"));
    }
-   // END:fixedTests
+
+   // START:suffix
+   @Test
+   public void nameWithSuffix() {
+      assertEquals("King, Martin L., Jr.", normalizer.normalizeName("Martin Luther King, Jr."));
+   }
+   // END:suffix
 }
