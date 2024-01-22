@@ -5,51 +5,50 @@ import java.util.stream.Collectors;
 
 public class NameNormalizer {
 
+   private String[] nameParts;
+
+   // START:fixedCode
    public String normalizeName(String name) {
-      var nameParts = name.split(" ");
+      this.nameParts = name.split(" ");
       if (nameParts.length == 1) {
          return name;
       }
 
-      // START_HIGHLIGHT
-      return formatLastNameFirst(
-         firstName(nameParts),
-         lastName(nameParts),
-         middleNames(nameParts));
-      // END_HIGHLIGHT
+      return formatLastNameFirst();
    }
+   // ...
+   // END:fixedCode
 
-   // START_HIGHLIGHT
-   private String firstName(String[] nameParts) {
+   private String firstName() {
       return nameParts[0];
    }
-   // END_HIGHLIGHT
 
-   // START_HIGHLIGHT
-   private String lastName(String[] nameParts) {
+   private String lastName() {
       return nameParts[nameParts.length - 1];
    }
-   // END_HIGHLIGHT
+
+   private String[] middleNames() {
+      return Arrays.copyOfRange(nameParts, 1, nameParts.length - 1);
+   }
+
+   // START:fixedCode
+   // START_HIGHLIGHT
+   private String formatLastNameFirst() {
+      // END_HIGHLIGHT
+      var middleInitials = Arrays.stream(middleNames())
+         .map(this::initial)
+         .collect(Collectors.joining(" "));
+      return middleInitials.isEmpty() ?
+         // START_HIGHLIGHT
+         String.format("%s, %s", lastName(), firstName()) :
+         String.format("%s, %s %s", lastName(), firstName(), middleInitials);
+         // END_HIGHLIGHT
+   }
 
    // START_HIGHLIGHT
-   private String[] middleNames(String[] nameParts) {
-      return Arrays.copyOfRange(
-         nameParts, 1, nameParts.length - 1);
-   }
-   // END_HIGHLIGHT
-
-   private String formatLastNameFirst(
-      String firstName, String lastName, String[] middleNames) {
-      var middleInitials = Arrays.stream(middleNames)
-         .map(this::extractInitial)
-         .collect(Collectors.joining(" "));
-
-      return middleInitials.isEmpty() ?
-         String.format("%s, %s", lastName, firstName) :
-         String.format("%s, %s %s", lastName, firstName, middleInitials);
-   }
-
-   private String extractInitial(String name) {
+   private String initial(String name) {
+      // END_HIGHLIGHT
       return name.charAt(0) + ".";
    }
+   // END:fixedCode
 }
