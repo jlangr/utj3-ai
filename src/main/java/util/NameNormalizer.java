@@ -12,14 +12,15 @@ public class NameNormalizer {
    public String normalizeName(String name) {
       extractSuffix(name);
       // Handle case for single name with no middle names but potentially a suffix
+      // START_HIGHLIGHT
       if (nameParts.length == 1) {
-         // START_HIGHLIGHT
          return nameParts[0] + suffix;
-         // END_HIGHLIGHT
       }
+      // END_HIGHLIGHT
 
       return formatLastNameFirst() + suffix;
    }
+   // END:fix
 
    private void extractSuffix(String name) {
       if (name.contains(",")) {
@@ -30,7 +31,6 @@ public class NameNormalizer {
          this.nameParts = name.split(" ");
       }
    }
-   // END:fix
 
    private String formatLastNameFirst() {
       var firstName = firstName();
