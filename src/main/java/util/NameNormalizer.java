@@ -11,7 +11,7 @@ public class NameNormalizer {
    // START:fix
    public String normalizeName(String name) {
       extractSuffix(name);
-      // Handle case for single name with no middle names but potentially a suffix
+      // Handle case for 1 name w/ no middle names but possible a suffix
       // START_HIGHLIGHT
       if (nameParts.length == 1) {
          return nameParts[0] + suffix;
