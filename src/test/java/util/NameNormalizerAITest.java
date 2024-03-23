@@ -16,12 +16,14 @@ public class NameNormalizerAITest {
 
    @Test
    public void testNameWithMiddleInitial() {
-      assertEquals("Doe, John A.", normalizer.normalizeName("John A. Doe"));
+      assertEquals("Doe, John A.",
+          normalizer.normalizeName("John A. Doe"));
    }
 
    @Test
    public void testNameWithSuffix() {
-      assertEquals("Doe, John Jr.", normalizer.normalizeName("John Doe, Jr."));
+      assertEquals("Doe, John Jr.",
+          normalizer.normalizeName("John Doe, Jr."));
    }
 
    @Test
@@ -31,7 +33,8 @@ public class NameNormalizerAITest {
 
    @Test
    public void testNameWithMiddleNames() {
-      assertEquals("Doe, John A. B.", normalizer.normalizeName("John Adam Bernard Doe"));
+      assertEquals("Doe, John A. B.",
+          normalizer.normalizeName("John Adam Bernard Doe"));
    }
 
    @Test

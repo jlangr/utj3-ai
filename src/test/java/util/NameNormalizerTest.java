@@ -31,7 +31,8 @@ public class NameNormalizerTest {
    // START:suffix
    @Test
    public void nameWithSuffix() {
-      assertEquals("King, Martin L., Jr.", normalizer.normalizeName("Martin Luther King, Jr."));
+      assertEquals("King, Martin L., Jr.",
+          normalizer.normalizeName("Martin Luther King, Jr."));
    }
    // END:suffix
 }
