@@ -31,13 +31,16 @@ public class NameNormalizerTest {
    // START:test
    @Test
    public void nameWithSuffix() {
-      assertEquals("King, Martin L., Jr.", normalizer.normalizeName("Martin Luther King, Jr."));
-      assertEquals("Doe, John, Sr.", normalizer.normalizeName("John Doe, Sr."));
+      assertEquals("King, Martin L., Jr.",
+          normalizer.normalizeName("Martin Luther King, Jr."));
+      assertEquals("Doe, John, Sr.",
+          normalizer.normalizeName("John Doe, Sr."));
    }
 
    @Test
    public void singleNameWithSuffix() {
-      assertEquals("Madonna, Esq.", normalizer.normalizeName("Madonna, Esq."));
+      assertEquals("Madonna, Esq.",
+          normalizer.normalizeName("Madonna, Esq."));
    }
    // END:test
 }
